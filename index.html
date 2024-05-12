@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Pollo Loco</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/el-pollo-loco-favicon-color.png" type="image/x-icon">
+    <script src="./js/assets.js"></script>
+    <script src="./models/drawable-object.class.js"></script>
+    <script src="./models/movable-object.class.js"></script>
+    <script src="./models/monster-object.class.js"></script>
+    <script src="./models/chicken.class.js"></script>
+    <script src="./models/mini-chicken.class.js"></script>
+    <script src="./models/character.class.js"></script>
+    <script src="./models/clouds.class.js"></script>
+    <script src="./models/collectable-object.class.js"></script>
+    <script src="./models/throwable-object.class.js"></script>
+    <script src="./models/world.class.js"></script>
+    <script src="./models/background-object.class.js"></script>
+    <script src="./models/keyboard-object.class.js"></script>
+    <script src="./models/statusbar.class.js"></script>
+    <script src="./models/statusbar-boss.class.js"></script>
+    <script src="./models/statusbar-health.class.js"></script>
+    <script src="./models/statusbar-bottle.class.js"></script>
+    <script src="./models/statusbar-coin.class.js"></script>
+    <script src="./models/levels.class.js"></script>
+    <script src="./models/endboss.class.js"></script>
+    <script src="./levels/level1.js"></script>
+    <script src="./models/sounds.class.js"></script>
+</head>
+<body>
+    <script defer src="./js/game.js"></script>
+    <h1 class="title">El Pollo Loco</h1>
+        <div id="fullscreen">
+            <div id="introscreen" class="introscreen border-radius20 backgroundImage widthHeight100">
+                <button class="gameButton" onclick="startGame()">Start</button>       
+            </div>
+            <div id="preloader" class="d-none border-radius20"><div style="position: relative; "><span style="position: absolute; top: 70px; left: 260px; font-size: 60px;">Game is Loading</span></div></div>
+            <div class="rotate border-radius20 widthHeight100">
+                <span style=" font-size: 60px;">Please rotate your device</span>
+                <img src="./img/screen-rotate.png" alt="">
+            </div>
+            <div id="manual" class="displayNone d-flex manual border-radius20 widthHeight100"
+            style="position: relative;">
+                <div id="control-manual" class="movement d-flex">
+                    <div class="manual-img-center" >
+                        <img class="manual-icons" src="./img/left-right.png" alt="">
+                        <img class="manual-pictures" src="./img/Walk2.png" alt="">
+                        <span>Walk</span>
+                    </div>
+                    <div class="manual-img-center" >
+                        <img class="manual-icons" src="./img/space.png" alt="">
+                        <img class="manual-pictures" src="./img/Jump2.png" alt="">
+                        <span>Jump</span>
+
+                    </div>
+                    <div class="manual-img-center" >
+                        <img class="manual-icons" src="./img/letter-d.png" alt="">
+                        <img class="manual-pictures" src="./img/img_pollo_locco/img/6_salsa_bottle/salsa_bottle.png" alt="">
+                        <span>Throw</span>
+                    </div>
+                </div>
+                <div class="links">
+                    <a class="pointer" href="./impressum.html">Impressum</a>
+                    <a class="pointer" href="./datenschutz.html">Datenschutz</a>
+                </div>
+                <div style="position: absolute; top: 20px; right: 20px;">
+                    <img class="closeIcon" onclick="hideManual()" src="./img/black-skull-favicon-color.png" alt="">
+                </div>
+            </div>
+            <div id="gamescreen" class="canvas d-none widthHeight100">
+                <canvas class="border-radius20" id="canvas" width="860" height="480"></canvas>
+                <div class="game-btns">
+                    <div class="btn-container-movement">
+                        <img id="btnLeft" src="./img/left.png" alt="">
+                        <img id="btnRight" src="./img/right.png" alt="">
+                    </div>
+                    <div class="btn-container-jumpthrow">
+                        <img id="btnJump" src="./img/up.png" alt="">
+                        <div class="div-throw">
+                            <img id="btnThrow" src="./img/img_pollo_locco/img/6_salsa_bottle/salsa_bottle.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="endscreen" class="backgroundImage d-none endscreen border-radius20 widthHeight100">
+                <button class="gameButton" onclick="restartGame()">Restart Game</button>
+            </div>
+            <div id="overlay" class="overlay">
+                <img onclick="showManual()" src="./img/gearsolid.svg" alt="">        
+                <img id="mute-button" src="./img/volume-high-solid.svg" alt="" onclick="toggleAudioSound()">
+                <img onclick="fullscreen()" src="./img/expand-solid.svg" alt=""> 
+            </div>
+        </div>
+        
+</body>
+</html>
