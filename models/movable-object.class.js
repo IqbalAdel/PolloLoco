@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject{
     speed = 0.15;
     otherDirection = false;
     speedY = 0.15;
-    acceleration = 5;
+    acceleration = 4;
     lastHit = 0;
     gravity;
 
@@ -14,10 +14,13 @@ class MovableObject extends DrawableObject{
 
     applyGravity(){
             this.gravity = setInterval(() => {
-                if(this.isAboveGround() || this.speedY > 0 ){
+                if(this.isAboveGround() || this.speedY > 0){
                     this.y -= this.speedY;
                     this.speedY -= this.acceleration; 
-                };
+                }
+                else if(this instanceof Character){
+                    this.y = 185
+                }
             }, 1000/25);
     }
 
@@ -32,7 +35,7 @@ class MovableObject extends DrawableObject{
         if(this instanceof MiniChicken){
             return this.y < 340;
         }
-        return this.y<180;
+        return this.y<183;
     };
 
     /**

@@ -327,6 +327,12 @@ canvas{
     canvas{
         width: 100%;
     }
+}
+
+@media (min-width: 768px){
+    .game-btns{
+        display:none;
+    }
 }  
 
 @media(max-width: 667px){

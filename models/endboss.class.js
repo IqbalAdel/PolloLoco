@@ -130,7 +130,6 @@ class Endboss extends Monster{
      */
     hit(){
         this.energy -= 9.2;
-        console.log(this.energy)
         if(this.energy <0){
             this.energy = 0;
         };

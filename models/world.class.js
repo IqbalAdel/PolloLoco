@@ -22,8 +22,6 @@ class World{
     gameWon;
     requestAnimationId;
 
-    
-    
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -31,7 +29,6 @@ class World{
         this.draw();
         this.setworld();
         this.runChecks();
-
     }
 
     /**
@@ -65,12 +62,8 @@ class World{
      * Checks if audio is muted and plays the game music.
      */
     checkBackgroundMusic(){
-        if(!audioMute){
-            this.sounds.gameMusic.play();
-        }
-        else{
-            this.sounds.gameMusic.pause();
-        }
+        if(!audioMute) this.sounds.gameMusic.play();
+        else this.sounds.gameMusic.pause();
     }
 
     /**
@@ -78,12 +71,8 @@ class World{
      */
     
     checkEncounter(){
-        if(this.character.x >= 1620){
-            this.endboss.startFinalBattle = true;
-        }
-        if(this.character.x >= 1550){
-            this.endboss.approachingBoss = true;
-        }
+        if(this.character.x >= 1620) this.endboss.startFinalBattle = true;
+        if(this.character.x >= 1550) this.endboss.approachingBoss = true;
     }
 
     /**
@@ -91,13 +80,9 @@ class World{
      */
     checkCollisions(){
         this.enemies.forEach((enemy) => {
-            if(this.characterHasBeenHit(enemy)){
-                this.characterIsHurt();
-            } 
+            if(this.characterHasBeenHit(enemy)) this.characterIsHurt();
         });
-        if(this.character.isColliding(this.endboss)){
-            this.character.energy = 0;
-        }
+        if(this.character.isColliding(this.endboss)) this.character.energy = 0;
     };
     
     /**
@@ -117,7 +102,6 @@ class World{
     characterHasBeenHit(enemy){
         return this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead()
     }
-
 
     /**
      * Checks for attacks against enemy characters and death sequence for those,
@@ -190,9 +174,7 @@ class World{
      */
     checkCollectable(){
             this.items.forEach((item) => {
-            if(this.character.isColliding(item)){
-                this.collectItem(item);
-            }
+            if(this.character.isColliding(item)) this.collectItem(item);
         })
     };
     
@@ -235,7 +217,6 @@ class World{
         this.items.splice(itemIndex, 1)
     }
 
-
     /**
      * Checks and controls the bottle throw action sequence.
      */
@@ -249,7 +230,6 @@ class World{
         }
     };
     
-
     /**
      * Returns a statement to check if bottle throw is possible or not.
      * @returns Boolean Statement if key has been pressed and bottles have been picked up.
@@ -266,16 +246,13 @@ class World{
         let bottle = new ThrowableObject(this.character.x+50, this.character.y+100, this.character.otherDirection)
         this.bottles.push(bottle)
     }
-    
 
     /**
      * Checks if endboss has been hit by a bottle.
      */
     checkBottleAttack(){
         this.bottles.forEach((bottle) => {
-            if(this.bossHasBeenHit(bottle)){
-                this.bossIsHurt(bottle);
-            }
+            if(this.bossHasBeenHit(bottle)) this.bossIsHurt(bottle);
         })
     }
 
@@ -316,7 +293,6 @@ class World{
         this.playEndingSound(this.sounds.victory_sound);
         this.showEnd("goodEndBg");
     }
-    
 
     /**
      * Starts the bad ending sequence.
@@ -349,14 +325,12 @@ class World{
         endScreen.classList.add(ending)
     }
 
-
     /**
      * Clears all remaining intervalls.
      */
     clearAllIntervals() {
         for (let i = 1; i < 999; i++) window.clearInterval(i);
     }
-    
     
     /**
      * Redraws an object on a canvas.
@@ -366,11 +340,8 @@ class World{
         this.ctx.translate(this.camera_x,0)        
         this.drawGameObjects();
         let self = this 
-        this.requestAnimationId= requestAnimationFrame(function(){
-            self.draw();
-        });
+        this.requestAnimationId= requestAnimationFrame(() => self.draw());
     };
-
 
     /**
      * Draws all game objects on the canvas. 
@@ -385,12 +356,10 @@ class World{
         this.addObjectsToMap(this.bottles);
         this.addObjectsToMap(this.clouds);
         this.ctx.translate(-this.camera_x,0)
-        if(this.endboss.approachingBoss){
-            this.addToMap(this.bossHealth);
-        }
-        this.addToMap(this.healthBar)
-        this.addToMap(this.bottleBar)
-        this.addToMap(this.coinBar)
+        if(this.endboss.approachingBoss) this.addToMap(this.bossHealth);
+        this.addToMap(this.healthBar);
+        this.addToMap(this.bottleBar);
+        this.addToMap(this.coinBar);
     }
 
     /**
@@ -398,9 +367,7 @@ class World{
      * @param {Object} objects Array of object for the game
      */
     addObjectsToMap(objects){
-        objects.forEach(o => {
-            this.addToMap(o)
-        });
+        objects.forEach(o => this.addToMap(o));
     };
 
     /**
@@ -408,17 +375,9 @@ class World{
      * @param {Object} ob Game object to be added on the canvas
      */
     addToMap(ob){
-        if(ob.otherDirection){
-            this.flipImage(ob);
-        };
+        if(ob.otherDirection) this.flipImage(ob);
         ob.draw(this.ctx);        
-        // ob.drawHitBox(this.ctx);
-        // ob.drawFrame(this.ctx);
-        // ob.drawHitBoxCoordinates(this.ctx);
-        if(ob.otherDirection){
-            this.flipImageBack(ob);
-        };
-
+        if(ob.otherDirection) this.flipImageBack(ob);
     };
 
     /**
@@ -429,8 +388,7 @@ class World{
         this.ctx.save();
         this.ctx.translate(ob.width, 0);
         this.ctx.scale(-1,1);
-        ob.x = ob.x * (-1);
-    }
+        ob.x = ob.x * (-1);};
 
     /**
      * Flips or inverts a game image back to its previous state.
@@ -438,6 +396,5 @@ class World{
      */
     flipImageBack(ob){
         ob.x = ob.x * -1;
-        this.ctx.restore();
-    }
+        this.ctx.restore();}
 }

@@ -39,7 +39,7 @@ class DrawableObject{
      */
 
     drawHitBox(ctx){
-        if(this instanceof Character || this instanceof CollectableObject){
+        if(this instanceof Character){
             ctx.beginPath();
             ctx.lineWidth ="5";
             ctx.strokeStyle = "red";
@@ -108,13 +108,13 @@ class DrawableObject{
      */
 
     drawHitBoxCoordinates(ctx) {
-        if(this instanceof Character || this instanceof CollectableObject){
+        if(this instanceof Character){
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'black';
             ctx.font = 'normal small-caps 100 20px serif';
             ctx.strokeText(
-                'x: ' + this.getHitBoxLeftPos() + ' y: ' + this.getHitBoxTopPos(),
+                ' y: ' + this.getHitBoxTopPos(),
                 this.getHitBoxLeftPos(),
                 this.getHitBoxTopPos() - 16
             );
