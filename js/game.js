@@ -13,8 +13,6 @@ let endscreen = document.getElementById("endscreen")
 let gamescreen = document.getElementById('gamescreen');
 let manual = document.getElementById('manual');
 let overlay = document.getElementById('overlay');
-     
-
 
 /**
  * Starts the process that activates the game.
@@ -25,7 +23,6 @@ function startGame(){
     loadGame();
     initLevel();
     world = new World(canvas, keyboard);
-
 };
 
 /**
@@ -37,9 +34,7 @@ function restartGame(){
   initLevel();
   loadGame();
   world = new World(canvas, keyboard);
-
 }
-
 
 /**
  * Resets the gamescreen, removing / hiding all unneccesary elements and resetting game variables.
@@ -51,9 +46,7 @@ function setStartScreen(){
   endscreen.classList.remove("goodEndBg")
   newGame = false;
   gameOver = false;
-
 }
-
 
 /**
  * Starts and ends the loading screen, bridging the time until objects have been loaded within the game world. 
@@ -62,7 +55,6 @@ function loadGame(){
     startLoadingScreen();
     stopLoadingScreen();
 }
-
 
 /**
  * Shows the loadingscreen
@@ -83,8 +75,6 @@ function stopLoadingScreen(){
     }, 1000);
 }
 
-
-
 /**
  * Enables the fullscreen mode for the game.
  */
@@ -99,9 +89,7 @@ function fullscreen(){
         addCorners();
     }
     fullScreen = !fullScreen; 
-    
 }
-
 
 /**
  * Removes the border-radius for the screens. 
@@ -113,7 +101,6 @@ function removeCorners(){
   canvas.classList.remove("border-radius20")
 }
 
-
 /**
  * Adds border-radius for the screens.
  */
@@ -123,7 +110,6 @@ function addCorners(){
   preloader.classList.add("border-radius20")
   canvas.classList.add("border-radius20")
 }
-
 
 /**
  * Exits the fullscreen mode.
@@ -135,7 +121,6 @@ function exitFullscreen() {
       document.webkitExitFullscreen();
     }
   }
-
 
 /**
  * Enters the fullscreen mode.
@@ -151,7 +136,6 @@ function enterFullscreen(element) {
       element.webkitRequestFullscreen();
     }
   }
-
 
 /**
  * Shows the manual page.

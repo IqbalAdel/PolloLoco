@@ -292,7 +292,7 @@ canvas{
     align-items: center;
     margin-top: 11px;
     border: solid;
-    margin-right: 50px;
+    margin-right: 20px;
     margin-left: 10px;
 }
 
@@ -318,7 +318,7 @@ canvas{
     }
 }
 
-@media (min-width: 768px){
+@media (hover:hover){
     .game-btns{
         display:none;
     }
