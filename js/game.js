@@ -19,7 +19,6 @@ let overlay = document.getElementById('overlay');
 /**
  * Starts the process that activates the game.
  */
-
 function startGame(){
     canvas = document.getElementById('canvas');
     keyboard = new Keyboard();
@@ -32,7 +31,6 @@ function startGame(){
 /**
  * Restarts the game once the user has finished the game before.
  */
-
 function restartGame(){
   canvas = document.getElementById('canvas');
   setStartScreen();
@@ -46,7 +44,6 @@ function restartGame(){
 /**
  * Resets the gamescreen, removing / hiding all unneccesary elements and resetting game variables.
  */
-
 function setStartScreen(){
   endscreen.classList.add('d-none')
   endscreen.classList.remove("d-flex")
@@ -61,7 +58,6 @@ function setStartScreen(){
 /**
  * Starts and ends the loading screen, bridging the time until objects have been loaded within the game world. 
  */
-
 function loadGame(){
     startLoadingScreen();
     stopLoadingScreen();
@@ -71,7 +67,6 @@ function loadGame(){
 /**
  * Shows the loadingscreen
  */
-
 function startLoadingScreen(){
     startscreen.classList.add("d-none");
     preloader.classList.remove("d-none");
@@ -80,7 +75,6 @@ function startLoadingScreen(){
 /**
  * Hides the loadingscreen and shows the gamescreen
  */
-
 function stopLoadingScreen(){
     setTimeout(() => {
         preloader.classList.remove("d-none");
@@ -94,7 +88,6 @@ function stopLoadingScreen(){
 /**
  * Enables the fullscreen mode for the game.
  */
-
 function fullscreen(){
     let fullscreen = document.getElementById('fullscreen');
     if(!document.fullscreenElement){
@@ -113,7 +106,6 @@ function fullscreen(){
 /**
  * Removes the border-radius for the screens. 
  */
-
 function removeCorners(){
   startscreen.classList.remove("border-radius20")
   endscreen.classList.remove("border-radius20")
@@ -125,7 +117,6 @@ function removeCorners(){
 /**
  * Adds border-radius for the screens.
  */
-
 function addCorners(){
   startscreen.classList.add("border-radius20")
   endscreen.classList.add("border-radius20")
@@ -137,7 +128,6 @@ function addCorners(){
 /**
  * Exits the fullscreen mode.
  */
-
 function exitFullscreen() {
     if(document.exitFullscreen) {
       document.exitFullscreen();
@@ -155,9 +145,9 @@ function exitFullscreen() {
 function enterFullscreen(element) {
     if(element.requestFullscreen) {
       element.requestFullscreen();
-    } else if(element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+    } else if(element.msRequestFullscreen) {      
       element.msRequestFullscreen();
-    } else if(element.webkitRequestFullscreen) {  // iOS Safari
+    } else if(element.webkitRequestFullscreen) {  
       element.webkitRequestFullscreen();
     }
   }
@@ -166,7 +156,6 @@ function enterFullscreen(element) {
 /**
  * Shows the manual page.
  */
-
 function showManual(){
   overlay.classList.add('displayNone')
   startscreen.classList.add('displayNone')
@@ -177,7 +166,6 @@ function showManual(){
 /**
  * Hides the manual page.
  */
-
 function hideManual(){
   startscreen.classList.remove('displayNone')
   overlay.classList.remove('displayNone')
@@ -188,7 +176,6 @@ function hideManual(){
 /**
  * Enables toggeling of the audio sound.
  */
-
 function toggleAudioSound(){
     let muteButton = document.getElementById('mute-button') 
     if(!audioMute){

@@ -13,7 +13,6 @@ class ThrowableObject extends MovableObject{
         left: 0,
     };
     
-
     constructor(x, y, boolDirection){
         super(); 
         this.loadImage("img/img_pollo_locco/img/6_salsa_bottle/salsa_bottle.png");
@@ -22,9 +21,7 @@ class ThrowableObject extends MovableObject{
         this.throw(x, y, boolDirection);
         this.applyGravity();
         this.otherDirection = boolDirection;
-
     };
-
 
     /**
      * Enables the throwing motion of the bottles in the game.
@@ -33,13 +30,11 @@ class ThrowableObject extends MovableObject{
      * @param {number} y This is the y coordinate from which the bottle is thrown
      * @param {boolean} throwDirection This is the variable that shows which side the character is facing and where the bottle should be thrown
      */
-
     throw(x, y, throwDirection){
         this.bottleVerticalMove(x, y, throwDirection)
         this.bottleHorizontalMove(20, 50);
         this.playIntervall = setInterval(() => this.playAnimation(BOTTLE_THROWING), 200);
     }
-
 
     /**
      * Controls the vertical movement of the thrown bottle. 
@@ -63,7 +58,6 @@ class ThrowableObject extends MovableObject{
      * @param {number} speed This is the speed with which the bottle moves along the x-axis.
      * @param {boolean} checkInterval This is the interval speed for the interval function. 
      */
-
     bottleHorizontalMove(speed, checkInterval){
         this.movement = setInterval(() => {
             if(this.otherDirection == true) this.x-=speed;
@@ -74,15 +68,10 @@ class ThrowableObject extends MovableObject{
     /**
      * Activates the bottle splash animation for the botte when hitting the endboss enemy.
      */
-
     splash(){
         this.stopAnimation();
         this.playAnimation(BOTTLE_SPLASH);
         this.width = 150;
         this.height = 150;
     }
-    
-
-
-
 }

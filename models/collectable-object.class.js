@@ -4,7 +4,6 @@ class CollectableObject extends DrawableObject{
     height = 150;
     width = 150;    
     itemsCollected = 0;
-
     offset = {
         top: 60,
         right: 80,
@@ -26,7 +25,6 @@ class CollectableObject extends DrawableObject{
      * Starts animation for images
      * @param {images} images images of game objects
      */
-    
     play(images){
         this.playIntervall =
         setInterval(() => {

@@ -1,7 +1,4 @@
-
 class Endboss extends Monster{
-
-   
     x = 2000 ;
     y = 70; 
     width = 400;
@@ -24,11 +21,10 @@ class Endboss extends Monster{
     };
     sounds = new Sounds();
 
-
     constructor(){
         super().loadImage('img/img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadEndBossImages();
-        this.speed = 3;
+        this.speed = 5;
         this.animate();
     }
 
@@ -44,10 +40,9 @@ class Endboss extends Monster{
         this.bossDeadAnimation();
     }
     
-
-/**
- * Animates boss alert motion.
- */
+    /**
+     * Animates boss alert motion.
+     */
     bossAlert(){
         let startBattle = setInterval(() => {
             this.playAnimation(ENDBOSS_ALERT)
@@ -85,7 +80,6 @@ class Endboss extends Monster{
             }
         }, 1000/60);
     }
-    
 
     /**
      * Animates boss walking motion.
@@ -98,7 +92,6 @@ class Endboss extends Monster{
         }, 200);   
     }
 
-    
     /**
      * Animates boss hurt motions.
      */
@@ -132,6 +125,8 @@ class Endboss extends Monster{
         this.energy -= 9.2;
         if(this.energy <0){
             this.energy = 0;
+            this.world.bossHealth.percentage=0
+            this.world.bossHealth.loadStatus(this.world.bossHealth.percentage, ENDBOSS_HEALTHBAR)
         };
         this.lastHit = new Date().getTime();
     };
@@ -139,9 +134,8 @@ class Endboss extends Monster{
     /**
      * Decreases boss health bar.
      */
-
     bossHealthFalls(){
-        this.world.bossHealth.percentage-=6;
+        this.world.bossHealth.percentage-=5;
         this.world.bossHealth.loadStatus(this.world.bossHealth.percentage, ENDBOSS_HEALTHBAR)
     }
     
@@ -176,7 +170,6 @@ class Endboss extends Monster{
         clearInterval(this.bossWalk) 
         clearInterval(this.bossMoveLeft)
     }
-
 
     /**
      * Loads all endboss animation images.

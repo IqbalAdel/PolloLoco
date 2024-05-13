@@ -9,15 +9,12 @@ class DrawableObject{
     energy = 100;
     marchIntervall;
     playIntervall;
-
     offset = {
         top: 0,
         right: 0,
         bottom: 0,
         left: 0,
     };
-
-
 
     /**
      * Draws a square frame for the object
@@ -37,7 +34,6 @@ class DrawableObject{
      * Draws a square frame for the object including offsets
      * @param {CanvasRenderingContext2D} ctx 
      */
-
     drawHitBox(ctx){
         if(this instanceof Character){
             ctx.beginPath();
@@ -57,7 +53,6 @@ class DrawableObject{
      * Returns Left position of the object frame.
      * @returns position number
      */
-
     getHitBoxLeftPos() {
         return this.x + this.offset.left;
     }
@@ -106,7 +101,6 @@ class DrawableObject{
      * Draws coordinates of the hit box of an object onto canvas.
      * @param {CanvasRenderingContext2D} ctx 
      */
-
     drawHitBoxCoordinates(ctx) {
         if(this instanceof Character){
             ctx.beginPath();
@@ -118,7 +112,6 @@ class DrawableObject{
                 this.getHitBoxLeftPos(),
                 this.getHitBoxTopPos() - 16
             );
-
         }
     }
 
@@ -191,7 +184,6 @@ class DrawableObject{
      * Plays animation by cycling through a list of images.
      * @param {array} images - An array of paths to the images to be animated.
      */
-
     playAnimation(images){
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -209,6 +201,5 @@ class DrawableObject{
         setInterval(() => {
             this.playAnimation(images);
         }, intervall);
-        
     }
 }

@@ -4,17 +4,14 @@ class Keyboard{
     SPACE = false;
     D = false;
 
-
     constructor(){
         this.bindKeyPressEvents();
         this.bindBtnPressEvents();
     }
 
-
     /**
      * Sets key values as true or false upon/after touch in the mobile version, thus triggering the related movement animations for the player character
      */
-
     bindBtnPressEvents(){
         document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
             e.preventDefault();
@@ -27,13 +24,11 @@ class Keyboard{
         document.getElementById('btnJump').addEventListener('touchstart', (e) => {
             e.preventDefault();
             this.SPACE = true; 
-
         });
         document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
             e.preventDefault();
             this.D = true; 
         });
-
         document.getElementById('btnLeft').addEventListener('touchend', (e) => {
             e.preventDefault();
             this.LEFT = false; 
@@ -52,11 +47,9 @@ class Keyboard{
         });
     }
 
-
     /**
      * Sets key values as true or false upon/after key-press in the desktop version, thus triggering the related movement animations for the player character
      */
-
     bindKeyPressEvents(){  
         window.addEventListener('keydown', event => {
             if(event.keyCode == 37) this.LEFT = true;  

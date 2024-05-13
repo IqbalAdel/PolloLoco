@@ -1,12 +1,10 @@
 class Chicken extends Monster{
-height = 90
-width = 90
-energy = 1
-chickenSound = new Audio("audio/chicken.mp3");
-acceleration = 4
-type = "chicken"
-
-
+    height = 90
+    width = 90
+    energy = 1
+    chickenSound = new Audio("audio/chicken.mp3");
+    acceleration = 4
+    type = "chicken"
 
     constructor(){
         super().loadImage('img/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -21,7 +19,6 @@ type = "chicken"
     /**
      * Animates the chicken within the game 
      */
-
     animate(){
         this.chickenMove();
         this.patrol();      
@@ -31,7 +28,6 @@ type = "chicken"
     /**
      * Controls the movement of the chicken towards the left and right side depending on the directionSwitch variable. 
      */
-
     chickenMove(){
         this.marchIntervall = setInterval(() => {
             if(this.directionSwitch) {
@@ -42,11 +38,9 @@ type = "chicken"
         }, 1000/30);
     }
 
-
     /**
      * Changes the variable directionSwitch in a certain time interval.
      */
-
     patrol(){
         this.directionSwitchIntervall = setInterval(() => {
             this.directionSwitch = !this.directionSwitch;

@@ -17,7 +17,7 @@ class Level{
             
     ];
 
-    constructor(enemies,endboss, clouds,bars, items, layers){  // immer um 2 erhöhen!
+    constructor(enemies,endboss, clouds,bars, items, layers){  
         this.enemies = enemies;
         this.endboss = endboss;
         this.clouds = clouds;
@@ -30,13 +30,11 @@ class Level{
         this.level_end_x = layers*719
     }
 
-
     /**
      * Adds the background object that sets the background image in the game.
      * 
      * @param {number} layers This is the number of backgroundimage-sets that should be added into the game for a longer horizontal movement. 
      */
-
     setBackground(layers){
         for (let i = 0; i <= layers; i+=2) { 
             this.backgroundObject.push(
@@ -48,17 +46,14 @@ class Level{
             new BackgroundObject('img/img_pollo_locco/img/5_background/layers/3_third_layer/2.png', 719*(i+1)),
             new BackgroundObject('img/img_pollo_locco/img/5_background/layers/2_second_layer/2.png', 719*(i+1)),
             new BackgroundObject('img/img_pollo_locco/img/5_background/layers/1_first_layer/2.png', 719*(i+1)),)
-                
         }
     }
-
 
     /**
      * Adds the coin objects into the game.
      * 
      * @param {number} layers This is the number of coin-sets that should float and spawn in the game. 
      */
-
     setCoins(layers){
         for (let i = 0; i < layers; i++) {
             this.items.push(
@@ -68,6 +63,4 @@ class Level{
             );
         }
     }
-    
-
 }

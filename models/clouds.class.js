@@ -8,18 +8,15 @@ class Cloud extends MovableObject{
     constructor(){
         super().loadImage(this.img);
         this.x = 1 + Math.random()*1500;
-        this.driftLeft();
-        
+        this.driftLeft();  
     };
 
     /**
      * Enables movement of cloud images towards the left side of the screen.
      */
-
     driftLeft(){
         setInterval(() => {
             this.MoveLeft(); 
         }, 1000/60);
-
     }
 }

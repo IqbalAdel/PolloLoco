@@ -12,20 +12,16 @@ class Sounds{
     victory_sound = new Audio("./audio/gameWon.mp3")
     gameMusic = new Audio("audio/gameMusic.mp3");
     snoring = new Audio("audio/snoring.mp3");
-
-
     
     constructor(){
         this.setSoundSettings();
     }
-    
 
     /**
      * Plays and stops the audio from playing when the audio button is toggeled on or off, changing the audioMute variable. 
      * 
      * @param {Audio} sound This is the audio file being played.
      */
-    
     playSound(sound){
         if(!audioMute){
             sound.play();
@@ -58,12 +54,10 @@ class Sounds{
     /**
      * Controls sound setting for the game sounds.
      */
-
     setSoundSettings(){
         this.gameMusic.loop = true;
         this.volume(this.gameMusic, 0.3)
         this.playbackRate(this.gameMusic, 1.2)
         this.volume(this.coinPickUp, 0.2)
     }
-    
 }

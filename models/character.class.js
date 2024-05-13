@@ -2,18 +2,15 @@ class Character extends MovableObject{
     height = 250 ;
     y = 180; 
     x = 100
-
     offset = {
         top: 60,
         right: 30,
         bottom: 40,
         left: 10,
     };
-
     world;
     speed = 10;
     sounds = new Sounds();
-
     idleTime;
     idleTimerSet = false;
 
@@ -22,7 +19,6 @@ class Character extends MovableObject{
         this.loadCharacterImages();
         this.animatePepe();
         this.applyGravity();
-
     }
 
     /**
@@ -57,7 +53,6 @@ class Character extends MovableObject{
         if(this.canMoveLeft()) this.characterMoveLeft();
         if(this.canJump()) this.jump();
     };
-    
 
     /**
      * Animates character for different cases.
@@ -125,7 +120,6 @@ class Character extends MovableObject{
         this.sounds.playSound(this.sounds.jumping_sound);
     }
 
-
     /**
      * Checks if character is moving left or right.
      * @returns Boolean value
@@ -134,18 +128,16 @@ class Character extends MovableObject{
         return this.world.keyboard.RIGHT || this.world.keyboard.LEFT
     }
 
-
     /**
      * Checks if character is sleepy and has been idle for prolonged time.
      * @returns Boolean value
      */
     isSleepy(){
         this.characterIsIdle();
-        let sleepTime = new Date().getTime() - this.idleTime; // time difference in ms
-        sleepTime = sleepTime / 1000; // difference in s
+        let sleepTime = new Date().getTime() - this.idleTime; 
+        sleepTime = sleepTime / 1000; 
         return sleepTime>3;
     };
-
 
     /**
      * Sets the time the character has started being in idle mode.
@@ -156,7 +148,6 @@ class Character extends MovableObject{
             this.idleTime = new Date().getTime();
         }
     }
-    
 
     /**
      * Returns a boolean value to see if character is standing in place.
@@ -174,7 +165,6 @@ class Character extends MovableObject{
         this.otherDirection = false;
     };
 
-
     /**
      * Moves character left.
      */
@@ -182,7 +172,6 @@ class Character extends MovableObject{
         this.x-=this.speed;
         this.otherDirection = true; 
     }
-
 
     /**
      * Loads all character motion images.
@@ -195,5 +184,4 @@ class Character extends MovableObject{
         this.loadImages(MC_IDLE);
         this.loadImages(MC_ASLEEP);
     }
-
 }

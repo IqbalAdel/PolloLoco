@@ -34,15 +34,16 @@ class World{
     /**
      * Checks for certain events during the game and executes follow-up functions.
      */
-
     runChecks(){
         setInterval(() => {
             this.checkJumpAttack();
             this.checkCollectable();
         }, 1000/60);
+        setInterval(() => {
+            this.checkBottleThrow();
+        }, 150);
         setInterval(() =>{
             this.checkCollisions();
-            this.checkBottleThrow();
             this.checkEncounter();
             this.checkBottleAttack();
             this.checkEndGame();
@@ -68,8 +69,7 @@ class World{
 
     /**
      * Checks if game character is within a certain range of the endboss and starts final fight sequence.
-     */
-    
+     */  
     checkEncounter(){
         if(this.character.x >= 1620) this.endboss.startFinalBattle = true;
         if(this.character.x >= 1550) this.endboss.approachingBoss = true;
@@ -129,14 +129,12 @@ class World{
         enemy.energy--;
         this.character.jump();
         if(enemy.energy == 0) this.chickenDeathSequence(enemy);
-
     }
 
     /**
      * Enemy death sequence
      * @param {Object} enemy Enemy object from the enemies array
      */
-    
     chickenDeathSequence(enemy){
         enemy.stopAnimation();
         enemy.stoppAnimation(enemy.jumpIntervall);
@@ -191,7 +189,6 @@ class World{
     /**
      * Collects item of type bottle, and changes bottle bar.
      */
-    
     bottleCollected(){
         this.sounds.playSound(this.sounds.pickBottle);
         this.bottleCounter++;
@@ -220,7 +217,6 @@ class World{
     /**
      * Checks and controls the bottle throw action sequence.
      */
-
     checkBottleThrow(){
         if(this.bottlesAvailable()){
             this.bottleIsThrown();
@@ -261,7 +257,6 @@ class World{
      * @param {Object} bottle This is a bottle object.
      * @returns Boolean statement to check collision of bottle with endboss.
      */
-        
     bossHasBeenHit(bottle){
         return bottle.isColliding(this.endboss)
     }
@@ -287,7 +282,6 @@ class World{
     /**
      * Starts the good ending sequence.
      */
-    
     goodGameOver(){
         this.clearAllIntervals();
         this.playEndingSound(this.sounds.victory_sound);
@@ -317,7 +311,6 @@ class World{
      * Shows the endscreen with a good or bad ending.
      * @param {string} ending 
      */
-
     showEnd(ending){
         let endScreen = document.getElementById('endscreen')
         endScreen.classList.remove('d-none')
@@ -346,7 +339,6 @@ class World{
     /**
      * Draws all game objects on the canvas. 
      */
-    
     drawGameObjects(){
         this.addObjectsToMap(this.backgroundObject);
         this.addToMap(this.character)        

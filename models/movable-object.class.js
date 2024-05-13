@@ -1,27 +1,24 @@
 class MovableObject extends DrawableObject{
-    
     speed = 0.15;
     otherDirection = false;
     speedY = 0.15;
     acceleration = 4;
     lastHit = 0;
     gravity;
-
     
     /**
      * Applays gravity if character is above ground. 
      */
-
     applyGravity(){
-            this.gravity = setInterval(() => {
-                if(this.isAboveGround() || this.speedY > 0){
-                    this.y -= this.speedY;
-                    this.speedY -= this.acceleration; 
-                }
-                else if(this instanceof Character){
-                    this.y = 185
-                }
-            }, 1000/25);
+        this.gravity = setInterval(() => {
+            if(this.isAboveGround() || this.speedY > 0){
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration; 
+            }
+            else if(this instanceof Character){
+                this.y = 185
+            }
+        }, 1000/25);
     }
 
     /**
@@ -55,7 +52,6 @@ class MovableObject extends DrawableObject{
         this.otherDirection = false; 
     };
     
-
     /**
      * Makes character jump upwards.
      */
@@ -106,8 +102,8 @@ class MovableObject extends DrawableObject{
      * @returns Boolean value
      */
     isHurt(){
-        let timepassed = new Date().getTime() - this.lastHit; // time difference in ms
-        timepassed = timepassed / 1000; // difference in s
+        let timepassed = new Date().getTime() - this.lastHit; 
+        timepassed = timepassed / 1000; 
         return timepassed<1;
     };
 }

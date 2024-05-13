@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'zabras';
-    src:url('./font/zabars.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    src:url('./font/zabars.ttf') format('truetype'); 
 }
 
 body{
@@ -37,7 +37,6 @@ a {
     max-width: 100vw;
     max-height: 100vh;
 }
-
 
 .introscreen{
     display: flex;
@@ -99,7 +98,6 @@ a {
 .manual-icons{
     width: 100px;
     height: 100px;
-    /* width: 20%; */
 }
 
 .closeIcon{
@@ -110,7 +108,6 @@ a {
 .manual-pictures{
     width: 12%;
 }
-
 
 canvas{
     background-color: black;
@@ -133,7 +130,6 @@ canvas{
 
 .movement{
     margin-left: 30px;
-    /* margin-right: 150px; */
     padding-bottom: 20px;
     flex-direction: column;
     border: 1px solid black;
@@ -154,7 +150,6 @@ canvas{
         margin-block-start: 0;
         margin-block-end: 0;    
     }
-
     font-family: Arial, Helvetica, sans-serif;
     text-shadow: none;
     font-size: 24px;
@@ -165,7 +160,6 @@ canvas{
     text-shadow: none;
     font-size: 24px;
     overflow-y: scroll;
-
     h1 {
         font-size: 47px;
         font-weight: 700;
@@ -186,18 +180,15 @@ canvas{
         margin-block-start: 10px;
         color: #2A3647;
       }
-
 }
 
 .links{
     display: flex;
     flex-direction: column;
     font-size: 24px;
-    /* position: absolute; */
     bottom: 20px;
     right: 10px;
     a{
-        /* margin-bottom: 5px; */
         margin: 10px;
     }
 }
@@ -218,7 +209,6 @@ canvas{
 .border-radius20{
     border-radius: 20px;
 }
-
 
 .overlay{
     z-index: 2;
@@ -273,14 +263,11 @@ canvas{
     width:70px;
     height: 70px;
     margin-right: 10px;
-
 }
 
 #btnRight{
     width: 67px;
     height: 67px;
-    
- 
 }
 
 .btn-container-movement{
@@ -296,7 +283,6 @@ canvas{
     display: flex;
 }
 
-
 .div-throw{
     background-color: orange;
     width: 65px;
@@ -309,17 +295,20 @@ canvas{
     margin-right: 50px;
     margin-left: 10px;
 }
+
 #btnJump{
     width: 70px;
     height: 70px;
-    margin-top: 10px;
-   
+    margin-top: 10px; 
 }
 
 #btnThrow{
     width: 70px;
     height: 70px;
-    
+}
+
+.rotate-txt{
+    padding: 20px;
 }
 
 
@@ -335,7 +324,7 @@ canvas{
     }
 }  
 
-@media(max-width: 667px){
+@media(max-width: 650px){
     .rotate{
         display: flex;
     }
@@ -361,7 +350,6 @@ canvas{
     .border-radius20{
         border-radius: 0;
     }
-
     canvas{
         height: 100%;
     }

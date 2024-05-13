@@ -1,6 +1,5 @@
 class CoinBar extends StatusBar{
     
-
     constructor(){
         super();
         this.y = 80;        
