@@ -6,6 +6,7 @@ class ThrowableObject extends MovableObject{
     bottlesCollected = 0; 
     world;
     movement;
+    world;
     offset = {
         top: 0,
         right: 0,
@@ -74,4 +75,14 @@ class ThrowableObject extends MovableObject{
         this.width = 150;
         this.height = 150;
     }
+
+    /**
+     * Returns a statement to check if bottle throw is possible or not.
+     * @returns Boolean Statement if key has been pressed and bottles have been picked up.
+     */
+    bottlesAvailable(){
+        return this.world.keyboard.D && this.bottlesCollected>0
+    }
+
+
 }

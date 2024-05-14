@@ -151,6 +151,25 @@ class Endboss extends Monster{
     }
 
     /**
+     * Returns a statement to see if endboss has been hit with bottle.
+     * @param {Object} bottle This is a bottle object.
+     * @returns Boolean statement to check collision of bottle with endboss.
+     */
+    bossHasBeenHit(bottle){
+        return bottle.isColliding(this)
+    }
+
+    /**
+     * Controls the sequence of events if endboss was successfully hit with bottle.
+     * @param {Object} bottle This is a bottle object.
+     */
+    bossIsHurt(bottle){
+        bottle.splash();
+        this.hit();
+        this.sounds.playSound(this.sounds.endboss_hurt)
+    }
+
+    /**
      * Shows death image for endboss, ends death animation and signals end of game.
      */
     finalDeathSequence(){

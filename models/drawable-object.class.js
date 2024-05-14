@@ -35,7 +35,7 @@ class DrawableObject{
      * @param {CanvasRenderingContext2D} ctx 
      */
     drawHitBox(ctx){
-        if(this instanceof Character){
+        if(this instanceof Character || this instanceof Chicken){
             ctx.beginPath();
             ctx.lineWidth ="5";
             ctx.strokeStyle = "red";

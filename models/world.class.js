@@ -5,6 +5,7 @@ class World{
     clouds = level1.clouds; 
     backgroundObject = level1.backgroundObject;
     sounds = new Sounds();
+    thrownBottle = new ThrowableObject();
     level = level1;
     canvas;
     ctx;
@@ -17,7 +18,6 @@ class World{
     bottles = [];
     bossHealth = new HealthBarBoss();
     bossDeath;
-    bottleCounter = 0;
     gameEnd = false;
     gameWon;
     requestAnimationId;
@@ -40,10 +40,10 @@ class World{
             this.checkCollectable();
         }, 1000/60);
         setInterval(() => {
+            this.checkCollisions();
             this.checkBottleThrow();
         }, 150);
         setInterval(() =>{
-            this.checkCollisions();
             this.checkEncounter();
             this.checkBottleAttack();
             this.checkEndGame();
@@ -57,6 +57,7 @@ class World{
     setworld(){
         this.character.world = this;
         this.endboss.world = this;
+        this.thrownBottle.world = this;
     }
     
     /**
@@ -80,28 +81,11 @@ class World{
      */
     checkCollisions(){
         this.enemies.forEach((enemy) => {
-            if(this.characterHasBeenHit(enemy)) this.characterIsHurt();
+            if(this.character.characterHasBeenHit(enemy)) this.character.characterIsHurt();
         });
         if(this.character.isColliding(this.endboss)) this.character.energy = 0;
     };
     
-    /**
-     * Checks if game character is hurt.
-     */
-    characterIsHurt(){
-        this.character.hit();
-        this.sounds.playSound(this.sounds.hurt_sound);
-        this.healthBar.loadStatus(this.character.energy, MC_HEALTHBAR)
-    }
-
-    /**
-     * Returns a true or false statement for enemy collision.
-     * @param {Object} enemy Enemy object from the enemies array
-     * @returns boolean statement to check collision with enemies on the ground
-     */
-    characterHasBeenHit(enemy){
-        return this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead()
-    }
 
     /**
      * Checks for attacks against enemy characters and death sequence for those,
@@ -118,7 +102,7 @@ class World{
      * @returns  boolean statement to check collision with enemies from above during attack
      */
     chickenIsAttacked(enemy){
-        return this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead()
+        return this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0 && !enemy.isDead()
     }
     
     /**
@@ -191,7 +175,7 @@ class World{
      */
     bottleCollected(){
         this.sounds.playSound(this.sounds.pickBottle);
-        this.bottleCounter++;
+        this.thrownBottle.bottlesCollected++;
         this.bottleBar.percentage+=25;
         this.bottleBar.loadStatus(this.bottleBar.percentage, MC_BOTTLEBAR)
     }
@@ -218,21 +202,13 @@ class World{
      * Checks and controls the bottle throw action sequence.
      */
     checkBottleThrow(){
-        if(this.bottlesAvailable()){
+        if(this.thrownBottle.bottlesAvailable()){
             this.bottleIsThrown();
-            this.bottleCounter--;
+            this.thrownBottle.bottlesCollected--;
             this.bottleBar.percentage-=25;
             this.bottleBar.loadStatus(this.bottleBar.percentage, MC_BOTTLEBAR)  
         }
     };
-    
-    /**
-     * Returns a statement to check if bottle throw is possible or not.
-     * @returns Boolean Statement if key has been pressed and bottles have been picked up.
-     */
-    bottlesAvailable(){
-        return this.keyboard.D && this.bottleCounter>0
-    }
     
     /**
      * Animates the bottle throw action.
@@ -248,27 +224,8 @@ class World{
      */
     checkBottleAttack(){
         this.bottles.forEach((bottle) => {
-            if(this.bossHasBeenHit(bottle)) this.bossIsHurt(bottle);
+            if(this.endboss.bossHasBeenHit(bottle)) this.endboss.bossIsHurt(bottle);
         })
-    }
-
-    /**
-     * Returns a statement to see if endboss has been hit with bottle.
-     * @param {Object} bottle This is a bottle object.
-     * @returns Boolean statement to check collision of bottle with endboss.
-     */
-    bossHasBeenHit(bottle){
-        return bottle.isColliding(this.endboss)
-    }
-        
-    /**
-     * Controls the sequence of events if endboss was successfully hit with bottle.
-     * @param {Object} bottle This is a bottle object.
-     */
-    bossIsHurt(bottle){
-        bottle.splash();
-        this.endboss.hit();
-        this.sounds.playSound(this.sounds.endboss_hurt)
     }
 
     /**
@@ -276,7 +233,10 @@ class World{
      */
     checkEndGame(){
         if(this.gameEnd) this.goodGameOver();
-        else if(this.character.isDead()) this.badGameOver();
+        else if(this.character.isDead()) {
+            this.healthBar.loadStatus(0, MC_HEALTHBAR)
+            this.badGameOver();
+        }
     }
 
     /**
@@ -368,7 +328,7 @@ class World{
      */
     addToMap(ob){
         if(ob.otherDirection) this.flipImage(ob);
-        ob.draw(this.ctx);        
+        ob.draw(this.ctx); 
         if(ob.otherDirection) this.flipImageBack(ob);
     };
 

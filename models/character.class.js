@@ -174,6 +174,33 @@ class Character extends MovableObject{
     }
 
     /**
+     * Decreases character health bar.
+     */
+    characterHealthFalls(){
+        this.world.healthBar.percentage-=5;
+        this.world.healthBar.loadStatus(this.world.healthBar.percentage, MC_HEALTHBAR)
+    }
+
+    /**
+     * Checks if game character is hurt.
+     */
+    characterIsHurt(){
+        this.hit();
+        this.sounds.playSound(this.sounds.hurt_sound);
+        this.characterHealthFalls();
+        
+    }
+
+    /**
+     * Returns a true or false statement for enemy collision.
+     * @param {Object} enemy Enemy object from the enemies array
+     * @returns boolean statement to check collision with enemies on the ground
+     */
+    characterHasBeenHit(enemy){
+        return this.isColliding(enemy) && !this.isAboveGround() && !enemy.isDead()
+    }
+
+    /**
      * Loads all character motion images.
      */
     loadCharacterImages(){

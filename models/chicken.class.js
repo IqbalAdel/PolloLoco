@@ -8,9 +8,9 @@ class Chicken extends Monster{
 
     constructor(){
         super().loadImage('img/img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
-        this.x = 200 + Math.random()*1000;
+        this.x = 200 + Math.random()*900;
         this.y = 350
-        this.speed = 3+1*Math.random();
+        this.speed = 15+1*Math.random();
         this.loadImages(CHICKEN_WALKING);
         this.animate();
         this.applyGravity();

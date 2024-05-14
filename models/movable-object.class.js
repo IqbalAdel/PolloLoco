@@ -71,14 +71,6 @@ class MovableObject extends DrawableObject{
                 this.y + this.offset.top < ob.y + ob.height - ob.offset.bottom; 
     };
 
-    /**
-     * Checks if one object is colliding with another object from above.
-     * @param {Object} ob 
-     * @returns Boolean value
-     */
-    isCollidingAbove(ob){
-        return !(this.getHitBoxBottomPos() - ob.getHitBoxTopPos());
-    } 
 
     /**
      * Decreases energy of a game character.

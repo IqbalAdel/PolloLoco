@@ -5,15 +5,15 @@ class MiniChicken extends Chicken{
     acceleration = 4
     type = "minichicken"
     offset = {
-        top: -20,
+        top: -8.9,
         right: -30,
-        bottom: -20,
+        bottom: -40,
         left: -10,
     };
 
     constructor(){
         super().loadImage('img/img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
-        this.x = 200 + Math.random()*500;
+        this.x = 200 + Math.random()*1300;
         this.y = 374;
         this.speed = 3+1*Math.random();
         this.loadImages(MINICHICKEN_WALKING);
